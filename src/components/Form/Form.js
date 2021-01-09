@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { CardContext } from '../../CardContext/CardContext';
+import { useForm } from "react-hook-form";
 import './Form.css';
 
 const Form = () => {
     const [integration, setIntegration] = useContext(CardContext);
+    const { register, handleSubmit, watch, errors } = useForm();
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [bugzillaUrl, setBugzillaUrl] = useState("");
@@ -13,38 +15,29 @@ const Form = () => {
     const [csr, setCsr] = useState("");
     const [notes, setNotes] = useState("");
 
+    const onSubmit = (data) => {
+        setDate(data.date)
+        setDescription(data.description)
+        setBugzillaUrl(data.bugzillaUrl)
+        setCrmUrl(data.crmUrl)
+        setIntegrationType(data.integration)
+        setStatus(data.status)
+        setCsr(data.csr)
+        setNotes(data.notes);
 
-    const handleChangeDate = (e) => {
-        setDate(e.target.value);
+        console.log(data);
+
     }
-    const handleChangeDescription = (e) => {
-        setDescription(e.target.value);
-    }
-    const handleChangeBugzillaUrl = (e) => {
-        setBugzillaUrl(e.target.value);
-    }
-    const handleChangeCrmUrl = (e) => {
-        setCrmUrl(e.target.value);
-    }
-    const handleChangeIntegrationType = (e) => {
-        setIntegrationType(e.target.value);
-    }
-    const handleChangeStatus = (e) => {
-        setStatus(e.target.value);
-    }
-    const handleChangeCsr = (e) => {
-        setCsr(e.target.value);
-    }
-    const handleChangeNotes = (e) => {
-        setNotes(e.target.value);
-    }
+
+
+
 
 
 
     return (
         <>
             <div className="form-container">
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <h3 className="text-center form-title">Add New Integration</h3>
 
                     <input
@@ -52,10 +45,9 @@ const Form = () => {
                         className="form-control"
                         name="date"
                         placeholder="Date"
-                        // onChange={handleChangeName}
                         required
-                        onChange={handleChangeDate}
-                        value={date}
+                        // value={date}
+                        ref={register({ required: true })}
                     />
 
                     <input
@@ -64,33 +56,36 @@ const Form = () => {
                         name="description"
                         placeholder="Description"
                         required
-                        onChange={handleChangeDescription}
-                        value={description}
+                        // value={description}
+                        ref={register({ required: true })}
                     />
 
                     <input
                         type="text"
                         className="form-control"
-                        name="bugzilla url"
+                        name="bugzillaUrl"
                         placeholder="Bugzilla URL"
                         required
-                        onChange={handleChangeBugzillaUrl}
-                        value={bugzillaUrl}
+                        onSubmit={handleSubmit(onSubmit)}
+                        // value={bugzillaUrl}
+                        ref={register({ required: true })}
                     />
 
                     <input
                         type="text"
                         className="form-control"
-                        name="crm url"
+                        name="crmUrl"
                         placeholder="CRM URL"
                         required
-                        onChange={handleChangeCrmUrl}
-                        value={crmUrl}
+                        // value={crmUrl}
+                        ref={register({ required: true })}
                     />
 
                     <select
                         name="integration"
-                        className="form-control">
+                        className="form-control"
+                        // value={integrationType}
+                        ref={register({ required: true })}>
                         <option value="">--Select an integration--</option>
                         <option value="clever">Clever</option>
                         <option value="sftp sync">SFTP Sync</option>
@@ -114,7 +109,9 @@ const Form = () => {
 
                     <select
                         name="status"
-                        className="form-control">
+                        className="form-control"
+                        // value={status}
+                        ref={register({ required: true })}>
                         <option value="">--Select current status--</option>
                         <option value="in progress">In Progress</option>
                         <option value="forwarded to programming">Forwarded to Programming</option>
@@ -123,7 +120,9 @@ const Form = () => {
 
                     <select
                         name="csr"
-                        className="form-control">
+                        className="form-control"
+                        // value={csr}
+                        ref={register({ required: true })}>
                         <option value="">--Select CSR--</option>
                         <option value="dan">Dan</option>
                         <option value="joe">Joe</option>
@@ -135,14 +134,14 @@ const Form = () => {
                         rows="5"
                         cols="33"
                         placeholder="Notes..."
-                        value={notes}
-                        onChange={handleChangeNotes}
+                        // value={notes}
+                        ref={register}
                     ></textarea>
 
 
                     <div className="button-wrapper">
                         <button
-                            type="button"
+                            type="submit"
                             className="submit-button text-center btn btn-light"
                         >Add integration</button>
                     </div>
