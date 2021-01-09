@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.form-container {
+    border-radius: 10px;
+    width: 25%;
+    height: 40%;
+    margin-left: 3%;
+    padding: 30px;
+    margin-top: 20px;
+    background: #0E74BC;
+    margin-bottom: 20px;
+
+}
+
+.form-control {
+    margin: 18px auto;
+    padding: 10px;
+    
+}
+
+.submit-button {
+    margin: 18px 0; 
+    padding: 10px 20px;
+}
+
+.form-title {
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.button-wrapper {
+    width:100%;
+    text-align: center;
+}
