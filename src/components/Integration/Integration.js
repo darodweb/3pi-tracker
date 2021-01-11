@@ -2,7 +2,7 @@
 
 
 
-// const Card = () => {
+// const Integration = () => {
 
 //     return ( 
 //         <>
@@ -14,4 +14,4 @@
 //      );
 // }
 
-// export default Card;
+// export default Integration;

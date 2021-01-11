@@ -1,18 +1,20 @@
 import './App.css';
-import { CardContextProvider } from './CardContext/CardContext';
+import { IntegrationContextProvider } from './IntegrationContext/IntegrationContext';
 import Form from './components/Form/Form';
+import IntegrationList from './components/IntegrationList/IntegrationList';
 
 function App() {
   return (
     <>
-      <CardContextProvider>
+      <IntegrationContextProvider>
 
         <h1 className="text-center mt-5 mb-5">3PI Tracker</h1>
         <Form />
+        {/* <SearchFilter /> */}
+        <IntegrationList />
 
-        {/* <Card-Container /> */}
 
-      </CardContextProvider>
+      </IntegrationContextProvider>
     </>
   );
 }

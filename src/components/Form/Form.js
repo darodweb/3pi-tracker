@@ -1,11 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
-import { CardContext } from '../../CardContext/CardContext';
-import { useForm } from "react-hook-form";
+import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
 import './Form.css';
 
 const Form = () => {
-    const [integration, setIntegration] = useContext(CardContext);
-    const { register, handleSubmit, watch, errors } = useForm();
+    const [integration, setIntegration] = useContext(IntegrationContext);
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [bugzillaUrl, setBugzillaUrl] = useState("");
@@ -15,19 +13,74 @@ const Form = () => {
     const [csr, setCsr] = useState("");
     const [notes, setNotes] = useState("");
 
-    const onSubmit = (data) => {
-        setDate(data.date)
-        setDescription(data.description)
-        setBugzillaUrl(data.bugzillaUrl)
-        setCrmUrl(data.crmUrl)
-        setIntegrationType(data.integration)
-        setStatus(data.status)
-        setCsr(data.csr)
-        setNotes(data.notes);
 
-        console.log(data);
-
+    const handleChangeDate = (event) => {
+        setDate(event.target.value);
     }
+    const handleChangeDescription = (event) => {
+        setDescription(event.target.value);
+    }
+    const handleChangeBugzillaUrl = (event) => {
+        setBugzillaUrl(event.target.value);
+    }
+    const handleChangeCrmUrl = (event) => {
+        setCrmUrl(event.target.value);
+    }
+    const handleChangeIntegrationType = (event) => {
+        setIntegrationType(event.target.value);
+    }
+    const handleChangeStatus = (event) => {
+        setStatus(event.target.value);
+    }
+    const handleChangeCsr = (event) => {
+        setCsr(event.target.value);
+    }
+    const handleChangeNotes = (event) => {
+        setNotes(event.target.value);
+    }
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIntegration([...integration, {
+            date: date,
+            description: description,
+            bugzillaUrl: bugzillaUrl,
+            crmUrl: crmUrl,
+            integrationType: integration,
+            status: status,
+            csr: csr,
+            notes: notes
+        }])
+        setDate("");
+        setDescription("");
+        setBugzillaUrl("");
+        setCrmUrl("");
+        setIntegrationType("");
+        setStatus("");
+        setCsr("");
+        setNotes("");
+    }
+
+    console.log(integration);
+
+
+
+    // const registerIntegration = (integrator) => {
+
+    // let record = {
+    //     integration: data.integration
+    //         total: total
+    // };
+
+    // dbIntegrations.add(record).then(({ id }) => {
+    //     setOrderId(id);
+    // })
+
+
+    // }
+
 
 
 
@@ -37,8 +90,8 @@ const Form = () => {
     return (
         <>
             <div className="form-container">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <h3 className="text-center form-title">Add New Integration</h3>
+                <form onSubmit={handleSubmit}>
+                    <h3 className="text-center form-title">Add New Integration. {integration.description}</h3>
 
                     <input
                         type="date"
@@ -46,8 +99,8 @@ const Form = () => {
                         name="date"
                         placeholder="Date"
                         required
-                        // value={date}
-                        ref={register({ required: true })}
+                        onChange={handleChangeDate}
+                        value={date}
                     />
 
                     <input
@@ -56,8 +109,8 @@ const Form = () => {
                         name="description"
                         placeholder="Description"
                         required
-                        // value={description}
-                        ref={register({ required: true })}
+                        onChange={handleChangeDescription}
+                        value={description}
                     />
 
                     <input
@@ -66,9 +119,8 @@ const Form = () => {
                         name="bugzillaUrl"
                         placeholder="Bugzilla URL"
                         required
-                        onSubmit={handleSubmit(onSubmit)}
-                        // value={bugzillaUrl}
-                        ref={register({ required: true })}
+                        onChange={handleChangeBugzillaUrl}
+                        value={bugzillaUrl}
                     />
 
                     <input
@@ -77,15 +129,15 @@ const Form = () => {
                         name="crmUrl"
                         placeholder="CRM URL"
                         required
-                        // value={crmUrl}
-                        ref={register({ required: true })}
+                        value={crmUrl}
+                        onChange={handleChangeCrmUrl}
                     />
 
                     <select
-                        name="integration"
+                        name="integrationtype"
                         className="form-control"
-                        // value={integrationType}
-                        ref={register({ required: true })}>
+                        value={integrationType}
+                        onChange={handleChangeIntegrationType}>
                         <option value="">--Select an integration--</option>
                         <option value="clever">Clever</option>
                         <option value="sftp sync">SFTP Sync</option>
@@ -110,8 +162,8 @@ const Form = () => {
                     <select
                         name="status"
                         className="form-control"
-                        // value={status}
-                        ref={register({ required: true })}>
+                        value={status}
+                        onChange={handleChangeStatus}>
                         <option value="">--Select current status--</option>
                         <option value="in progress">In Progress</option>
                         <option value="forwarded to programming">Forwarded to Programming</option>
@@ -121,8 +173,8 @@ const Form = () => {
                     <select
                         name="csr"
                         className="form-control"
-                        // value={csr}
-                        ref={register({ required: true })}>
+                        value={csr}
+                        onChange={handleChangeCsr}>
                         <option value="">--Select CSR--</option>
                         <option value="dan">Dan</option>
                         <option value="joe">Joe</option>
@@ -134,8 +186,8 @@ const Form = () => {
                         rows="5"
                         cols="33"
                         placeholder="Notes..."
-                        // value={notes}
-                        ref={register}
+                        value={notes}
+                        onChange={handleChangeNotes}
                     ></textarea>
 
 
