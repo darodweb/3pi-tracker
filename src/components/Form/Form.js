@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
 import './Form.css';
 
-const Form = () => {
+const Form = ({ registerIntegration }) => {
     const [integration, setIntegration] = useContext(IntegrationContext);
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
@@ -70,8 +70,7 @@ const Form = () => {
     // const registerIntegration = (integrator) => {
 
     // let record = {
-    //     integration: data.integration
-    //         total: total
+    //     integration: integration
     // };
 
     // dbIntegrations.add(record).then(({ id }) => {
