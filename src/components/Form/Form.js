@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
 import './Form.css';
 
-const Form = ({ registerIntegration }) => {
+const Form = () => {
     const [integration, setIntegration] = useContext(IntegrationContext);
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
@@ -38,7 +38,6 @@ const Form = ({ registerIntegration }) => {
     const handleChangeNotes = (event) => {
         setNotes(event.target.value);
     }
-
 
 
     const handleSubmit = (e) => {
@@ -90,7 +89,7 @@ const Form = ({ registerIntegration }) => {
         <>
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
-                    <h3 className="text-center form-title">Add New Integration. {integration.description}</h3>
+                    <h3 className="text-center form-title">Add New Integration {integration.description}</h3>
 
                     <input
                         type="date"
@@ -138,46 +137,46 @@ const Form = ({ registerIntegration }) => {
                         value={integrationType}
                         onChange={handleChangeIntegrationType}>
                         <option value="">--Select an integration--</option>
-                        <option value="clever">Clever</option>
-                        <option value="sftp sync">SFTP Sync</option>
-                        <option value="api feed">API Feed</option>
-                        <option value="vnn">VNN</option>
-                        <option value="cms4schools">CMS4Schools</option>
-                        <option value="blackbaud">Blackbaud</option>
-                        <option value="fs google oauth">FS Google oAuth</option>
-                        <option value="tr google oauth">TR Google oAuth</option>
-                        <option value="rwo google oauth">rWO Google oAuth</option>
-                        <option value="ats">ATS</option>
-                        <option value="fs ldap">FS LDAP</option>
-                        <option value="rwo ldap">rWO LDAP</option>
-                        <option value="web service">Web Service</option>
-                        <option value="fs google calendar">FS Google Calendar</option>
-                        <option value="big teams">Big Teams</option>
-                        <option value="finalsite">Finalsite</option>
-                        <option value="api feed for digital signage">API Feed for Digital Signage</option>
-                        <option value="dynacal">Dynacal</option>
+                        <option value="Clever">Clever</option>
+                        <option value="Sftp Sync">SFTP Sync</option>
+                        <option value="API Feed">API Feed</option>
+                        <option value="VNN">VNN</option>
+                        <option value="CMS4Schools">CMS4Schools</option>
+                        <option value="Blackbaud">Blackbaud</option>
+                        <option value="FS Google oAuth">FS Google oAuth</option>
+                        <option value="TR Google oAuth">TR Google oAuth</option>
+                        <option value="rWO Google oAuth">rWO Google oAuth</option>
+                        <option value="ATS">ATS</option>
+                        <option value="FS LDAP">FS LDAP</option>
+                        <option value="rWO LDAP">rWO LDAP</option>
+                        <option value="Web Service">Web Service</option>
+                        <option value="FS Google Calendar">FS Google Calendar</option>
+                        <option value="Big Teams">Big Teams</option>
+                        <option value="Finalsite">Finalsite</option>
+                        <option value="API Feed for Digital Signage">API Feed for Digital Signage</option>
+                        <option value="Dynacal">Dynacal</option>
                     </select>
 
                     <select
-                        name="status"
+                        name="Status"
                         className="form-control"
                         value={status}
                         onChange={handleChangeStatus}>
                         <option value="">--Select current status--</option>
-                        <option value="in progress">In Progress</option>
-                        <option value="forwarded to programming">Forwarded to Programming</option>
-                        <option value="completed">Completed</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="In Program.">Forwarded to Programming</option>
+                        <option value="Completed">Completed</option>
                     </select>
 
-                    <select
-                        name="csr"
+                    <input
+                        type="text"
                         className="form-control"
+                        name="CSR"
+                        placeholder="CSR"
+                        required
+                        onChange={handleChangeCsr}
                         value={csr}
-                        onChange={handleChangeCsr}>
-                        <option value="">--Select CSR--</option>
-                        <option value="dan">Dan</option>
-                        <option value="joe">Joe</option>
-                    </select>
+                    />
 
                     <textarea
                         name="notes"

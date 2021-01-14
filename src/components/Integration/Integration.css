@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+.integration-container {
+    display:flex;
+    flex-direction: column;
+}
+
 .wrapper {
     width: 703px;
     height: 180px;
@@ -55,13 +60,24 @@
 }
 
 .status {
-    border: 1px solid red;
     width: 100px;
     text-align: center;
     border-radius: 5px;
     margin-right:25px;
-
+    color: white;
 }
+
+.status-completed {
+background: #a5a5a5;
+}
+
+.status-inProgress {
+    background: #daf109b5;
+    }
+
+.status-inProgramming {
+    background: #f10909b5;
+        }
 
 .edit {
         width: 60px;

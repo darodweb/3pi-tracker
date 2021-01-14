@@ -11,19 +11,19 @@ const IntegrationList = () => {
 
     console.log(integration);
 
-    const registerIntegration = () => {
-        let setup = {
-            date: integration.date,
-            description: integration.description,
-            bugzillaUrl: integration.bugzillaUrl,
-            crmUrl: integration.crmUrl,
-            integrationType: integration.integration,
-            status: integration.status,
-            csr: integration.csr,
-            notes: integration.notes
-        }
-        setSetUpDetails(setup);
-    }
+    // const registerIntegration = () => {
+    //     let setup = {
+    //         date: integration.date,
+    //         description: integration.description,
+    //         bugzillaUrl: integration.bugzillaUrl,
+    //         crmUrl: integration.crmUrl,
+    //         integrationType: integration.integration,
+    //         status: integration.status,
+    //         csr: integration.csr,
+    //         notes: integration.notes
+    //     }
+    //     setSetUpDetails(setup);
+    // }
 
     console.log(setupDetails);
 
@@ -31,8 +31,10 @@ const IntegrationList = () => {
 
         <>
             <div style={{ display: 'flex', justifyContent: 'spaceEvenly', flexDirection: 'row' }}>
-                <Form registerIntegration={registerIntegration} />
-                <Integration integration={integration} style={{ padding: '2rem' }} />
+                <Form />
+                <div class='integration-container'>
+                    <Integration integration={integration} style={{ padding: '2rem' }} />
+                </div>
             </div>
 
         </>
