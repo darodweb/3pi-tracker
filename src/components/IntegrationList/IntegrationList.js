@@ -2,11 +2,13 @@ import { useState, useContext } from 'react';
 import Form from '../Form/Form';
 import Integration from '../Integration/Integration';
 import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
-
+import { dbIntegrations } from '../../IntegrationContext/IntegrationContext';
 
 const IntegrationList = () => {
     const [integration, setIntegration] = useContext(IntegrationContext);
     const [setupDetails, setSetUpDetails] = useState('');
+    const [integrationId, setIntegrationId] = useState('');
+
 
 
     console.log(integration);
@@ -26,6 +28,8 @@ const IntegrationList = () => {
     // }
 
     console.log(setupDetails);
+
+
 
     return (
 

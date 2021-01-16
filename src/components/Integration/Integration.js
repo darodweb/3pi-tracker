@@ -1,11 +1,33 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import './Integration.css';
 import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
+import { Link } from "react-router-dom";
 
 
 
 const Integration = () => {
     const [integration, setIntegration] = useContext(IntegrationContext);
+
+    useEffect(() => {
+        const saveLocalIntegration = () => {
+            localStorage.setItem('integrations', JSON.stringify(integration));
+        };
+        const getLocalIntegration = () => {
+            if (localStorage.getItem('integrations') === null) {
+                localStorage.setItem('integrations', JSON.stringify([]));
+            } else {
+                let localIntegration = localStorage.getItem('integrations', JSON.stringify(integration));
+                console.log(Array.from(localIntegration));
+            }
+        }
+
+        saveLocalIntegration();
+        getLocalIntegration();
+        console.log(integration)
+    }, [integration])
+
+
+
 
     console.log(integration)
     return (
@@ -34,8 +56,8 @@ const Integration = () => {
 
                     <div className="integration-lower-text">
                         <div className="integration-lower-text_1">
-                            <a href={`${element.bugzillaUrl}`}><p>Bugzilla Ticket</p></a>
-                            <a href={`${element.crmUrl}`}><p>CRM Ticket</p></a>
+                            <Link to={`${element.bugzillaUrl}`}><p>Bugzilla Ticket</p></Link>
+                            <Link to={`${element.crmUrl}`}><p>CRM Ticket</p></Link>
                             <p>Notes</p>
                         </div>
 

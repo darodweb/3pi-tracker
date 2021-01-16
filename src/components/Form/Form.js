@@ -40,6 +40,8 @@ const Form = () => {
     }
 
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setIntegration([...integration, {
@@ -62,7 +64,6 @@ const Form = () => {
         setNotes("");
     }
 
-    console.log(integration);
 
 
 
