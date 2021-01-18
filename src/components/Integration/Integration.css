@@ -71,11 +71,8 @@
 background: #a5a5a5;
 }
 
-.status-inProgress {
-    background: #daf109b5;
-    }
 
-.status-inProgramming {
+.status-inProgramming, .status-inProgress {
     background: #f10909b5;
         }
 

@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
 import './Form.css';
+import firebase from 'firebase/app';
+import { dbIntegrations } from '../../IntegrationContext/IntegrationContext';
 
 const Form = () => {
     const [integration, setIntegration] = useContext(IntegrationContext);
@@ -40,8 +42,6 @@ const Form = () => {
     }
 
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         setIntegration([...integration, {
@@ -49,11 +49,12 @@ const Form = () => {
             description: description,
             bugzillaUrl: bugzillaUrl,
             crmUrl: crmUrl,
-            integrationType: integration,
+            integrationType: integrationType,
             status: status,
             csr: csr,
-            notes: notes
+            notes: notes,
         }])
+        registerIntegration();
         setDate("");
         setDescription("");
         setBugzillaUrl("");
@@ -64,21 +65,29 @@ const Form = () => {
         setNotes("");
     }
 
+    console.log(integration);
 
 
+    const registerIntegration = () => {
 
-    // const registerIntegration = (integrator) => {
+        let record = {
+            date: date,
+            description: description,
+            bugzillaUrl: bugzillaUrl,
+            crmUrl: crmUrl,
+            integrationType: integrationType,
+            status: status,
+            csr: csr,
+            notes: notes,
+            // date: firebase.firestore.Timestamp.fromDate(new Date())
+        };
 
-    // let record = {
-    //     integration: integration
-    // };
-
-    // dbIntegrations.add(record).then(({ id }) => {
-    //     setOrderId(id);
-    // })
+        dbIntegrations.add(record).then(({ id }) => {
+            console.log(`The integration was successfully registered with id: ${id}`);
+        })
 
 
-    // }
+    }
 
 
 

@@ -9,7 +9,7 @@ function App() {
     <>
       <IntegrationContextProvider>
         <BrowserRouter>
-          <h1 className="text-center mt-5 mb-5">3PI Tracker</h1>
+
 
           {/* <SearchFilter /> */}
           <IntegrationList />

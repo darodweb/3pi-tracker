@@ -6,12 +6,8 @@ import { dbIntegrations } from '../../IntegrationContext/IntegrationContext';
 
 const IntegrationList = () => {
     const [integration, setIntegration] = useContext(IntegrationContext);
-    const [setupDetails, setSetUpDetails] = useState('');
-    const [integrationId, setIntegrationId] = useState('');
+    const [pendingIntegration] = useContext(IntegrationContext);
 
-
-
-    console.log(integration);
 
     // const registerIntegration = () => {
     //     let setup = {
@@ -27,19 +23,25 @@ const IntegrationList = () => {
     //     setSetUpDetails(setup);
     // }
 
-    console.log(setupDetails);
-
-
+    console.log(integration);
 
     return (
 
         <>
+            <h1 className="text-center mt-5 mb-5">3PI Tracker</h1>
+
+
             <div style={{ display: 'flex', justifyContent: 'spaceEvenly', flexDirection: 'row' }}>
                 <Form />
                 <div class='integration-container'>
                     <Integration integration={integration} style={{ padding: '2rem' }} />
                 </div>
             </div>
+
+
+
+
+
 
         </>
     );
