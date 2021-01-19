@@ -1,7 +1,6 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
 import './Form.css';
-import firebase from 'firebase/app';
 import { dbIntegrations } from '../../IntegrationContext/IntegrationContext';
 
 const Form = () => {
@@ -44,7 +43,7 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIntegration([...integration, {
+        setIntegration({
             date: date,
             description: description,
             bugzillaUrl: bugzillaUrl,
@@ -53,7 +52,7 @@ const Form = () => {
             status: status,
             csr: csr,
             notes: notes,
-        }])
+        })
         registerIntegration();
         setDate("");
         setDescription("");
@@ -64,8 +63,6 @@ const Form = () => {
         setCsr("");
         setNotes("");
     }
-
-    console.log(integration);
 
 
     const registerIntegration = () => {

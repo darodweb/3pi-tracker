@@ -1,13 +1,12 @@
-import { useState, useContext } from 'react';
-import Form from '../Form/Form';
+import { useContext } from 'react';
 import Integration from '../Integration/Integration';
 import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
-import { dbIntegrations } from '../../IntegrationContext/IntegrationContext';
+import IntegrationsPending from '../IntegrationPending/IntegrationsPending';
 
 const IntegrationList = () => {
-    const [integration, setIntegration] = useContext(IntegrationContext);
-    const [pendingIntegration] = useContext(IntegrationContext);
-
+    const integration = useContext(IntegrationContext);
+    const pendingIntegration = useContext(IntegrationContext);
+    const integrationDb = useContext(IntegrationContext);
 
     // const registerIntegration = () => {
     //     let setup = {
@@ -23,18 +22,19 @@ const IntegrationList = () => {
     //     setSetUpDetails(setup);
     // }
 
-    console.log(integration);
+    console.log(integrationDb);
 
     return (
 
         <>
-            <h1 className="text-center mt-5 mb-5">3PI Tracker</h1>
+
 
 
             <div style={{ display: 'flex', justifyContent: 'spaceEvenly', flexDirection: 'row' }}>
-                <Form />
+
                 <div class='integration-container'>
-                    <Integration integration={integration} style={{ padding: '2rem' }} />
+                    <IntegrationsPending />
+                    <Integration integration={integrationDb} style={{ padding: '2rem' }} />
                 </div>
             </div>
 

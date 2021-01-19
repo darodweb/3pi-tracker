@@ -8,70 +8,57 @@ export const dbIntegrations = getFirestore().collection("Integrations");
 export const IntegrationContextProvider = (props) => {
     const [integration, setIntegration] = useState([]);
     const [integrationDb, setintegrationDb] = useState([]);
-    const [pendingIntegration, setPendingIntegration] = useState({});
+    const [pendingIntegration, setPendingIntegration] = useState([]);
 
     //Querying Firebase to get all integrations marked: In Progress or In Program
-
-    console.log(integration);
 
     useEffect(() => {
 
         //Query all integrations
+
         dbIntegrations.get().then((querySnapshot) => {
             const aux =
                 querySnapshot.docs.map((doc) => {
                     return { id: doc.id, ...doc.data() };
                 })
-            setintegrationDb(aux);
+            console.log('Este es el valor de aux:', aux);
+            setintegrationDb([...integrationDb, aux]);
         })
-
-
-        //Query integrations "In Progress"
-        dbIntegrations.where("status", "==", "In Progress").get()
-            .then((querySnapshot) => {
-                const inProgress =
-                    querySnapshot.docs.map((doc) => {
-                        return { id: doc.id, ...doc.data() };
-                    })
-
-                setPendingIntegration(inProgress);
-            })
-
-        //Query integrations "In Programming"   
-        dbIntegrations.where("status", "==", "In Program.").get()
-            .then((querySnapshot) => {
-                const inProgramming =
-                    querySnapshot.docs.map((doc) => {
-                        return { id: doc.id, ...doc.data() };
-                    })
-                console.log(`This integration is in programming: ${inProgramming}`);
-                setPendingIntegration(inProgramming);
-            })
-
     }, [])
 
-
-
-
-
-
-    //Query to get integrations "In Programming"
     // useEffect(() => {
+    //     //Query integrations "In Progress"
+    //     dbIntegrations.where("status", "==", "In Progress").get()
+    //         .then((querySnapshot) => {
+    //             const inProgress =
+    //                 querySnapshot.docs.map((doc) => {
+    //                     return { id: doc.id, ...doc.data() };
+    //                 })
+    //             console.log('Este es el valor de inProgress:', inProgress);
+    //             setPendingIntegration([...pendingIntegration, inProgress]);
+    //         })
 
-    //     dbIntegrations.where("status", "==", "Completed").get()
+    // }, [])
+
+    // useEffect(() => {
+    //     //Query integrations "In Programming"   
+    //     dbIntegrations.where("status", "==", "In Program.").get()
     //         .then((querySnapshot) => {
     //             const inProgramming =
     //                 querySnapshot.docs.map((doc) => {
     //                     return { id: doc.id, ...doc.data() };
     //                 })
-    //             console.log(`This integration is in programming: ${inProgramming}`);
-    //             setIntegration(inProgramming);
+    //             console.log('Este es el valor de inProgramming:', inProgramming);
+    //             setPendingIntegration([...pendingIntegration, inProgramming]);
     //         })
+
     // }, [])
 
+    console.log('integrationDb', integrationDb)
+    console.log('pendingIntegration', pendingIntegration)
 
     return (
-        <IntegrationContext.Provider value={[integration, setIntegration, pendingIntegration]}>
+        <IntegrationContext.Provider value={[integrationDb, pendingIntegration, setPendingIntegration]}>
             {props.children}
         </IntegrationContext.Provider>
     )

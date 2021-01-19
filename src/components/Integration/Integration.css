@@ -8,6 +8,8 @@
     flex-direction: column;
 }
 
+
+
 .wrapper {
     width: 703px;
     height: 180px;
@@ -52,6 +54,8 @@
     justify-content: space-around;
     
 }
+
+
 
 .integration-upper-row_1 {
     display:flex;
@@ -106,3 +110,8 @@ background: #a5a5a5;
     font-size: 14px;
     text-align: center;
 }
+
+/* .integration-container__main {
+    display:flex;
+    flex-direction: row;
+} */

@@ -1,40 +1,16 @@
-import { useContext } from 'react';
-import './Integration.css';
-import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
+import { useState, useContext } from 'react';
+import { IntegrationContext } from '../../IntegrationContext/IntegrationContext'
 import { Link } from "react-router-dom";
 
+const IntegrationsPending = () => {
+    const pendingIntegration = useContext(IntegrationContext);
 
-const Integration = () => {
-    const integration = useContext(IntegrationContext);
-
-
-
-    // const handleDelete = (id) => {
-
-    //     // let toDelete = integration.find((element) => element.id !== integration.id);
-    //     let integrationId = integration.id
-
-    //     // dbIntegrations.doc(id).delete().then(() => {
-
-    //     //     // setIntegration(integrationId);
-    //     //     console.log(integrationId);
-    //     // })
-
-
-    //     // db.collection("cities").doc("DC").delete().then(function () {
-    //     //     console.log("Document successfully deleted!");
-    //     // }).catch(function (error) {
-    //     //     console.error("Error removing document: ", error);
-    //     // });
-    // }
-
-    console.log(integration);
+    console.log(pendingIntegration);
 
     return (
         <>
-            {integration.length > 0 ? integration.map((element, index) => (
-
-                <div className="wrapper" key={index}>
+            {pendingIntegration ? pendingIntegration.map((element, index) => (
+                <div className="wrapper" key={index} >
                     <div className="integration-upper-row">
                         <div className="integration-upper-row_1">
                             <p>{element.date}</p>
@@ -48,10 +24,10 @@ const Integration = () => {
 
                     <div className="integration-main-body" integration>
                         <p>{element.description}</p>
-                        <p className={
-                            element.status === 'In Program.' && 'status-inProgramming status' ||
-                            element.status === 'In Progress' && 'status-inProgress status' ||
-                            element.status === 'Completed' && 'status-completed status'
+                        <p className={`status`
+                            // element.status === 'In Program.' && 'status-inProgramming status' ||
+                            // element.status === 'In Progress' && 'status-inProgress status' ||
+                            // element.status === 'Completed' && 'status-completed status'
                         }>{element.status}</p>
                     </div>
 
@@ -66,17 +42,22 @@ const Integration = () => {
                             <button className="edit">Edit</button>
                             <button className="delete mx-3">Delete</button>
                         </div>
+
                     </div>
                 </div>
 
-            ))
-                : <h3>There are no integrations at this time.</h3>
+            )) :
+                <h4> There are no PENDING integrations</h4>
             }
 
+
+
+
+
+
+
         </>
-
-
     );
 }
 
-export default Integration;
+export default IntegrationsPending;

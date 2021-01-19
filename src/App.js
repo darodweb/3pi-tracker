@@ -1,8 +1,8 @@
-import './App.css';
+import './components/Integration/Integration.css';
 import { IntegrationContextProvider } from './IntegrationContext/IntegrationContext';
-import Integration from './components/Integration/Integration';
 import IntegrationList from './components/IntegrationList/IntegrationList';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import Form from './components/Form/Form';
 
 function App() {
   return (
@@ -10,9 +10,12 @@ function App() {
       <IntegrationContextProvider>
         <BrowserRouter>
 
-
-          {/* <SearchFilter /> */}
-          <IntegrationList />
+          <h1 className="text-center mt-5 mb-5">3PI Tracker</h1>
+          <div className="d-flex">
+            <Form />
+            {/* <SearchFilter /> */}
+            <IntegrationList />
+          </div>
           <Switch>
 
           </Switch>
