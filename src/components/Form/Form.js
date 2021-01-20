@@ -1,10 +1,8 @@
-import { useState, useContext } from 'react';
-import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
+import { useState } from 'react';
 import './Form.css';
 import { dbIntegrations } from '../../IntegrationContext/IntegrationContext';
 
-const Form = () => {
-    const [integration, setIntegration] = useContext(IntegrationContext);
+const Form = ({ addNewIntegration }) => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [bugzillaUrl, setBugzillaUrl] = useState("");
@@ -43,16 +41,16 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIntegration({
-            date: date,
-            description: description,
-            bugzillaUrl: bugzillaUrl,
-            crmUrl: crmUrl,
-            integrationType: integrationType,
-            status: status,
-            csr: csr,
-            notes: notes,
-        })
+        // setIntegration({
+        //     date: date,
+        //     description: description,
+        //     bugzillaUrl: bugzillaUrl,
+        //     crmUrl: crmUrl,
+        //     integrationType: integrationType,
+        //     status: status,
+        //     csr: csr,
+        //     notes: notes,
+        // })
         registerIntegration();
         setDate("");
         setDescription("");
@@ -76,8 +74,8 @@ const Form = () => {
             status: status,
             csr: csr,
             notes: notes,
-            // date: firebase.firestore.Timestamp.fromDate(new Date())
         };
+        addNewIntegration(record);
 
         dbIntegrations.add(record).then(({ id }) => {
             console.log(`The integration was successfully registered with id: ${id}`);
@@ -96,7 +94,7 @@ const Form = () => {
         <>
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
-                    <h3 className="text-center form-title">Add New Integration {integration.description}</h3>
+                    <h3 className="text-center form-title">Add New Integration</h3>
 
                     <input
                         type="date"

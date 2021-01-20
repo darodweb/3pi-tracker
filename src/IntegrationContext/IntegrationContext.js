@@ -7,8 +7,8 @@ export const dbIntegrations = getFirestore().collection("Integrations");
 
 export const IntegrationContextProvider = (props) => {
     const [integration, setIntegration] = useState([]);
-    const [integrationDb, setintegrationDb] = useState([]);
-    const [pendingIntegration, setPendingIntegration] = useState([]);
+
+
 
     //Querying Firebase to get all integrations marked: In Progress or In Program
 

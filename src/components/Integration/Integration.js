@@ -1,12 +1,8 @@
-import { useContext } from 'react';
 import './Integration.css';
-import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
 import { Link } from "react-router-dom";
 
 
-const Integration = () => {
-    const integration = useContext(IntegrationContext);
-
+const Integration = ({ integrationDb }) => {
 
 
     // const handleDelete = (id) => {
@@ -27,12 +23,12 @@ const Integration = () => {
     //     //     console.error("Error removing document: ", error);
     //     // });
     // }
-
-    console.log(integration);
+    const flatIntegrationDb = integrationDb.flat();
+    console.log(flatIntegrationDb);
 
     return (
         <>
-            {integration.length > 0 ? integration.map((element, index) => (
+            {flatIntegrationDb.length > 0 ? flatIntegrationDb.map((element, index) => (
 
                 <div className="wrapper" key={index}>
                     <div className="integration-upper-row">

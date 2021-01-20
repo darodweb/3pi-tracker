@@ -22,3 +22,6 @@ export const getFirestore = () => {
     return firebase.firestore();
 }
 
+export const dbIntegrations = getFirestore().collection("Integrations");
+
+

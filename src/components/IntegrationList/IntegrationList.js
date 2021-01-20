@@ -1,12 +1,8 @@
-import { useContext } from 'react';
 import Integration from '../Integration/Integration';
-import { IntegrationContext } from '../../IntegrationContext/IntegrationContext';
 import IntegrationsPending from '../IntegrationPending/IntegrationsPending';
 
-const IntegrationList = () => {
-    const integration = useContext(IntegrationContext);
-    const pendingIntegration = useContext(IntegrationContext);
-    const integrationDb = useContext(IntegrationContext);
+const IntegrationList = ({ integrationInProgramming, integrationDb, pendingIntegration, integrationInProgress }) => {
+
 
     // const registerIntegration = () => {
     //     let setup = {
@@ -29,12 +25,14 @@ const IntegrationList = () => {
         <>
 
 
-
             <div style={{ display: 'flex', justifyContent: 'spaceEvenly', flexDirection: 'row' }}>
 
                 <div class='integration-container'>
-                    <IntegrationsPending />
-                    <Integration integration={integrationDb} style={{ padding: '2rem' }} />
+                    <IntegrationsPending
+                        integrationInProgramming={integrationInProgramming}
+                        pendingIntegration={pendingIntegration}
+                        integrationInProgress={integrationInProgress} />
+                    {/* <Integration integrationDb={integrationDb} style={{ padding: '2rem' }} /> */}
                 </div>
             </div>
 

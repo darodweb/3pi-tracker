@@ -1,15 +1,23 @@
-import { useState, useContext } from 'react';
-import { IntegrationContext } from '../../IntegrationContext/IntegrationContext'
 import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
-const IntegrationsPending = () => {
-    const pendingIntegration = useContext(IntegrationContext);
+const IntegrationsPending = ({ integrationInProgramming, integrationInProgress, pendingIntegration }) => {
+    ;
 
-    console.log(pendingIntegration);
+
+    const flattenedPendingIntegration = pendingIntegration.flat();
+
+    // useEffect(() => {
+    //     setpendingIntegrations([...pendingIntegrations, integrationInProgress]);
+    //     setpendingIntegrations([...pendingIntegrations, integrationInProgramming]);
+
+    // }, [])
+
+    console.log(flattenedPendingIntegration);
 
     return (
         <>
-            {pendingIntegration ? pendingIntegration.map((element, index) => (
+            {flattenedPendingIntegration ? flattenedPendingIntegration.map((element, index) => (
                 <div className="wrapper" key={index} >
                     <div className="integration-upper-row">
                         <div className="integration-upper-row_1">
