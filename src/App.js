@@ -9,12 +9,11 @@ import { dbIntegrations } from './Firebase/Firebase';
 
 function App() {
   const [integrationDb, setintegrationDb] = useState([]);
-  const [newIntegration, setNewIntegration] = useState([]);
   const [pendingIntegration, setPendingIntegration] = useState([]);
 
 
   //Query to get all integrations
-  console.log(pendingIntegration)
+
   useEffect(() => {
     console.log(pendingIntegration)
     dbIntegrations.get().then((querySnapshot) => {
@@ -70,6 +69,10 @@ function App() {
     setintegrationDb(newData);
   }
 
+  const deleteIntegration = (deletedInteg) => {
+    setintegrationDb(deletedInteg);
+  }
+
   console.log(`Estas son las pending:`, pendingIntegration);
   return (
     <>
@@ -82,7 +85,8 @@ function App() {
           {/* <SearchFilter /> */}
           <IntegrationList
             integrationDb={integrationDb}
-            pendingIntegration={pendingIntegration} />
+            pendingIntegration={pendingIntegration}
+            deleteIntegration={deleteIntegration} />
         </div>
         <Switch>
 

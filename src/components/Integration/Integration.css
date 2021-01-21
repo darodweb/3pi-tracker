@@ -64,11 +64,12 @@
 }
 
 .status {
-    width: 100px;
+    width: 140px;
     text-align: center;
     border-radius: 5px;
     margin-right:25px;
     color: white;
+    background: rgba(59, 58, 58, 0.418);
 }
 
 .status-completed {
@@ -115,3 +116,7 @@ background: #a5a5a5;
     display:flex;
     flex-direction: row;
 } */
+
+.title-pendings {
+    color: #515151;
+}

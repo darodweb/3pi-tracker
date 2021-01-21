@@ -169,7 +169,7 @@ const Form = ({ addNewIntegration }) => {
                         onChange={handleChangeStatus}>
                         <option value="">--Select current status--</option>
                         <option value="In Progress">In Progress</option>
-                        <option value="In Program.">Forwarded to Programming</option>
+                        <option value="In Programming">Forwarded to Programming</option>
                         <option value="Completed">Completed</option>
                     </select>
 

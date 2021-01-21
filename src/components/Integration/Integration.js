@@ -44,11 +44,7 @@ const Integration = ({ integrationDb }) => {
 
                     <div className="integration-main-body" integration>
                         <p>{element.description}</p>
-                        <p className={
-                            element.status === 'In Program.' && 'status-inProgramming status' ||
-                            element.status === 'In Progress' && 'status-inProgress status' ||
-                            element.status === 'Completed' && 'status-completed status'
-                        }>{element.status}</p>
+                        <p className="status">{element.status}</p>
                     </div>
 
                     <div className="integration-lower-text">

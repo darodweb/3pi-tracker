@@ -1,64 +1,72 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { dbIntegrations } from '../../Firebase/Firebase';
 
-const IntegrationsPending = ({ integrationInProgramming, integrationInProgress, pendingIntegration }) => {
-    ;
+const IntegrationsPending = ({ pendingInteg, integrationDb, deleteIntegration }) => {
+    // const [pendingIntegrations, setpendingIntegrations] = useState([]);
 
-
-    const flattenedPendingIntegration = pendingIntegration.flat();
 
     // useEffect(() => {
-    //     setpendingIntegrations([...pendingIntegrations, integrationInProgress]);
-    //     setpendingIntegrations([...pendingIntegrations, integrationInProgramming]);
+    //     const flattenedIntegrationDb = integrationDb.flat();
 
-    // }, [])
+    //     if (flattenedIntegrationDb.length > 0) {
+    //         let integrationsInProgress = flattenedIntegrationDb.filter((el) => (el.status !== 'Completed'.trim()));
+    //         console.log(`integrations in Pending`, integrationsInProgress);
+    //         setpendingIntegrations(integrationsInProgress);
+    //         return;
+    //     }
 
-    console.log(flattenedPendingIntegration);
+
+    // }, [integrationDb])
+
+    console.log(pendingInteg.id);
+
+    const handleDeleteIntegration = (pendingInteg) => {
+        // dbIntegrations.doc(pendingInteg.id).delete().then(function () {
+        //     console.log("Document successfully deleted!");
+        // }).catch(function (error) {
+        //     console.error("Error removing document: ", error);
+        // });
+        // deleteIntegration(pendingInteg);
+        let prueba = pendingInteg.filter((el) => el.id !== pendingInteg.id)
+        console.log(prueba);
+    }
 
     return (
         <>
-            {flattenedPendingIntegration ? flattenedPendingIntegration.map((element, index) => (
-                <div className="wrapper" key={index} >
-                    <div className="integration-upper-row">
-                        <div className="integration-upper-row_1">
-                            <p>{element.date}</p>
-                            <p>{element.type}</p>
-                            <p>CSR: {element.csr}</p>
-                        </div>
-                        <div className="integration-upper-row_2">
-                            <p style={{ marginRight: '55px' }}>Status</p>
-                        </div>
+
+
+
+            <div className="wrapper" >
+                <div className="integration-upper-row">
+                    <div className="integration-upper-row_1">
+                        <p>{pendingInteg.date}</p>
+                        <p>{pendingInteg.type}</p>
+                        <p>CSR: {pendingInteg.csr}</p>
                     </div>
-
-                    <div className="integration-main-body" integration>
-                        <p>{element.description}</p>
-                        <p className={`status`
-                            // element.status === 'In Program.' && 'status-inProgramming status' ||
-                            // element.status === 'In Progress' && 'status-inProgress status' ||
-                            // element.status === 'Completed' && 'status-completed status'
-                        }>{element.status}</p>
-                    </div>
-
-                    <div className="integration-lower-text">
-                        <div className="integration-lower-text_1">
-                            <Link to={`${element.bugzillaCrm}`}><p>Bugzilla Ticket</p></Link>
-                            <Link to={`${element.crmUrl}`}><p>CRM Ticket</p></Link>
-                            <p>Notes</p>
-                        </div>
-
-                        <div className="integration-lower-text_buttons">
-                            <button className="edit">Edit</button>
-                            <button className="delete mx-3">Delete</button>
-                        </div>
-
+                    <div className="integration-upper-row_2">
+                        <p style={{ marginRight: '55px' }}>Status</p>
                     </div>
                 </div>
 
-            )) :
-                <h4> There are no PENDING integrations</h4>
-            }
+                <div className="integration-main-body" integration>
+                    <p>{pendingInteg.description}</p>
+                    <p className="status">{pendingInteg.status}</p>
+                </div>
 
+                <div className="integration-lower-text">
+                    <div className="integration-lower-text_1">
+                        <Link to={`${pendingInteg.bugzillaCrm}`}><p>Bugzilla Ticket</p></Link>
+                        <Link to={`${pendingInteg.crmUrl}`}><p>CRM Ticket</p></Link>
+                        <p>Notes</p>
+                    </div>
 
+                    <div className="integration-lower-text_buttons">
+                        <button className="edit">Edit</button>
+                        <button onClick={() => handleDeleteIntegration()} className="delete mx-3">Delete</button>
+                    </div>
+
+                </div>
+            </div>
 
 
 

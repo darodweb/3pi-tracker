@@ -5,62 +5,62 @@ export const IntegrationContext = React.createContext();
 export const dbIntegrations = getFirestore().collection("Integrations");
 
 
-export const IntegrationContextProvider = (props) => {
-    const [integration, setIntegration] = useState([]);
+// export const IntegrationContextProvider = (props) => {
+//     const [integration, setIntegration] = useState([]);
 
 
 
-    //Querying Firebase to get all integrations marked: In Progress or In Program
+//     //Querying Firebase to get all integrations marked: In Progress or In Program
 
-    useEffect(() => {
+//     useEffect(() => {
 
-        //Query all integrations
+//         //Query all integrations
 
-        dbIntegrations.get().then((querySnapshot) => {
-            const aux =
-                querySnapshot.docs.map((doc) => {
-                    return { id: doc.id, ...doc.data() };
-                })
-            console.log('Este es el valor de aux:', aux);
-            setintegrationDb([...integrationDb, aux]);
-        })
-    }, [])
+//         dbIntegrations.get().then((querySnapshot) => {
+//             const aux =
+//                 querySnapshot.docs.map((doc) => {
+//                     return { id: doc.id, ...doc.data() };
+//                 })
+//             console.log('Este es el valor de aux:', aux);
+//             setintegrationDb([...integrationDb, aux]);
+//         })
+//     }, [])
 
-    // useEffect(() => {
-    //     //Query integrations "In Progress"
-    //     dbIntegrations.where("status", "==", "In Progress").get()
-    //         .then((querySnapshot) => {
-    //             const inProgress =
-    //                 querySnapshot.docs.map((doc) => {
-    //                     return { id: doc.id, ...doc.data() };
-    //                 })
-    //             console.log('Este es el valor de inProgress:', inProgress);
-    //             setPendingIntegration([...pendingIntegration, inProgress]);
-    //         })
+//     // useEffect(() => {
+//     //     //Query integrations "In Progress"
+//     //     dbIntegrations.where("status", "==", "In Progress").get()
+//     //         .then((querySnapshot) => {
+//     //             const inProgress =
+//     //                 querySnapshot.docs.map((doc) => {
+//     //                     return { id: doc.id, ...doc.data() };
+//     //                 })
+//     //             console.log('Este es el valor de inProgress:', inProgress);
+//     //             setPendingIntegration([...pendingIntegration, inProgress]);
+//     //         })
 
-    // }, [])
+//     // }, [])
 
-    // useEffect(() => {
-    //     //Query integrations "In Programming"   
-    //     dbIntegrations.where("status", "==", "In Program.").get()
-    //         .then((querySnapshot) => {
-    //             const inProgramming =
-    //                 querySnapshot.docs.map((doc) => {
-    //                     return { id: doc.id, ...doc.data() };
-    //                 })
-    //             console.log('Este es el valor de inProgramming:', inProgramming);
-    //             setPendingIntegration([...pendingIntegration, inProgramming]);
-    //         })
+//     // useEffect(() => {
+//     //     //Query integrations "In Programming"   
+//     //     dbIntegrations.where("status", "==", "In Program.").get()
+//     //         .then((querySnapshot) => {
+//     //             const inProgramming =
+//     //                 querySnapshot.docs.map((doc) => {
+//     //                     return { id: doc.id, ...doc.data() };
+//     //                 })
+//     //             console.log('Este es el valor de inProgramming:', inProgramming);
+//     //             setPendingIntegration([...pendingIntegration, inProgramming]);
+//     //         })
 
-    // }, [])
+//     // }, [])
 
-    console.log('integrationDb', integrationDb)
-    console.log('pendingIntegration', pendingIntegration)
+//     console.log('integrationDb', integrationDb)
+//     console.log('pendingIntegration', pendingIntegration)
 
-    return (
-        <IntegrationContext.Provider value={[integrationDb, pendingIntegration, setPendingIntegration]}>
-            {props.children}
-        </IntegrationContext.Provider>
-    )
+//     return (
+//         <IntegrationContext.Provider value={[integrationDb, pendingIntegration, setPendingIntegration]}>
+//             {props.children}
+//         </IntegrationContext.Provider>
+//     )
 
-}
+// }
