@@ -15,7 +15,7 @@ function App() {
   //Query to get all integrations
 
   useEffect(() => {
-    console.log(pendingIntegration)
+
     dbIntegrations.get().then((querySnapshot) => {
       const intDb =
         querySnapshot.docs.map((doc) => {
@@ -43,7 +43,7 @@ function App() {
         setPendingIntegration([...pendingIntegration, inProgress].flat());
       })
 
-  }, [])
+  }, [integrationDb])
 
 
   //Query integrations marked "In Programming" 
@@ -60,20 +60,29 @@ function App() {
         setPendingIntegration([...pendingIntegration, inProgramming].flat());
       })
 
-  }, [])
+  }, [integrationDb])
 
 
   // Callback to be passed down to the Form component so it can change the integrationDb state upon submission of new integration.
 
   const addNewIntegration = (newData) => {
     setintegrationDb(newData);
+    console.log(newData);
   }
 
-  const deleteIntegration = (deletedInteg) => {
-    setintegrationDb(deletedInteg);
+  const deleteIntegration = (id) => {
+    console.log(id);
+    console.log(pendingIntegration);
+    const updatedIntegrations = pendingIntegration.filter(pendingInt => pendingInt.id !== id)
+    setintegrationDb(updatedIntegrations);
+    console.log(integrationDb.length);
+    dbIntegrations.doc(id).delete().then(function () {
+      console.log("Document successfully deleted!");
+    }).catch(function (error) {
+      console.error("Error removing document: ", error);
+    });
   }
 
-  console.log(`Estas son las pending:`, pendingIntegration);
   return (
     <>
 

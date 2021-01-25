@@ -8,7 +8,6 @@ const IntegrationList = ({ integrationDb, pendingIntegration, deleteIntegration 
 
     useEffect(() => {
 
-
         if (integrationDb.length > 0) {
             let integrationsInProgress = integrationDb.flat().filter((el) => (el.status !== 'Completed'.trim()));
             setpendingIntegrations(integrationsInProgress);

@@ -20,21 +20,15 @@ const IntegrationsPending = ({ pendingInteg, integrationDb, deleteIntegration })
 
     console.log(pendingInteg.id);
 
-    const handleDeleteIntegration = (pendingInteg) => {
-        // dbIntegrations.doc(pendingInteg.id).delete().then(function () {
-        //     console.log("Document successfully deleted!");
-        // }).catch(function (error) {
-        //     console.error("Error removing document: ", error);
-        // });
-        // deleteIntegration(pendingInteg);
-        let prueba = pendingInteg.filter((el) => el.id !== pendingInteg.id)
-        console.log(prueba);
-    }
+    // const handleDeleteIntegration = () => {
+
+    //     console.log(pendingInteg);
+    //     // let prueba = pendingInteg.filter((el) => el.id !== pendingInteg.id)
+    //     deleteIntegration(prueba);
+    // }
 
     return (
         <>
-
-
 
             <div className="wrapper" >
                 <div className="integration-upper-row">
@@ -62,7 +56,7 @@ const IntegrationsPending = ({ pendingInteg, integrationDb, deleteIntegration })
 
                     <div className="integration-lower-text_buttons">
                         <button className="edit">Edit</button>
-                        <button onClick={() => handleDeleteIntegration()} className="delete mx-3">Delete</button>
+                        <button onClick={() => deleteIntegration(pendingInteg.id)} className="delete mx-3">Delete</button>
                     </div>
 
                 </div>
