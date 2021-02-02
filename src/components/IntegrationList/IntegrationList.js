@@ -1,22 +1,12 @@
 import Integration from '../Integration/Integration';
 import { useState, useEffect } from 'react';
-import IntegrationsPending from '../IntegrationPending/IntegrationsPending';
+import { dbIntegrations } from '../../Firebase/Firebase';
 
-const IntegrationList = ({ integrationDb, pendingIntegration, deleteIntegration }) => {
-    const [pendingIntegrations, setpendingIntegrations] = useState([]);
-    // let flattenedIntegrationDb = integrationDb.flat();
 
-    useEffect(() => {
+const IntegrationList = ({ integrationDb, deleteIntegration, setintegrationDb }) => {
 
-        if (integrationDb.length > 0) {
-            let integrationsInProgress = integrationDb.flat().filter((el) => (el.status !== 'Completed'.trim()));
-            setpendingIntegrations(integrationsInProgress);
-            return;
-        }
-
-    }, [integrationDb])
-
-    console.log(pendingIntegrations);
+    const IntegrationDb = integrationDb.flat();
+    console.log(IntegrationDb);
 
     return (
 
@@ -24,28 +14,21 @@ const IntegrationList = ({ integrationDb, pendingIntegration, deleteIntegration 
 
             <div style={{ display: 'flex', justifyContent: 'spaceEvenly', flexDirection: 'row' }}>
 
-                <div class='integration-container'>
-                    {pendingIntegrations ? pendingIntegrations.map((pendingInteg) => (
-                        <IntegrationsPending
+                <div className='integration-container'>
+                    {IntegrationDb ? IntegrationDb.map((integration, index) => (
+                        <Integration
+                            key={integration.id}
+                            integration={integration}
+                            deleteIntegration={deleteIntegration}
+                            setintegrationDb={setintegrationDb}
                             integrationDb={integrationDb}
-                            pendingInteg={pendingInteg}
-                            deleteIntegration={deleteIntegration} />
+                            style={{ padding: '2rem' }} />
+                    )) :
+                        <h4 className="text-center">No pending integrations</h4>}
 
-                    ))
-                        :
-                        null}
-
-                    {/* <Integration 
-                    integrationDb={integrationDb}
-                    deleteIntegration={deleteIntegration}
-                     style={{ padding: '2rem' }} /> */}
                 </div>
+
             </div>
-
-
-
-
-
 
         </>
     );

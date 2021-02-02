@@ -1,8 +1,7 @@
 import './Integration.css';
-import { Link } from "react-router-dom";
 
 
-const Integration = ({ integrationDb }) => {
+const Integration = ({ integration, deleteIntegration, setintegrationDb, integrationDb }) => {
 
 
     // const handleDelete = (id) => {
@@ -23,47 +22,47 @@ const Integration = ({ integrationDb }) => {
     //     //     console.error("Error removing document: ", error);
     //     // });
     // }
-    const flatIntegrationDb = integrationDb.flat();
-    console.log(flatIntegrationDb);
+
+    console.log(integrationDb.flat());
+
+    //Function to delete an integration from local state
+    const deleteIntegrationHandler = () => {
+        setintegrationDb(integrationDb.flat().filter((el) => el.id !== integration.id))
+    }
 
     return (
         <>
-            {flatIntegrationDb.length > 0 ? flatIntegrationDb.map((element, index) => (
 
-                <div className="wrapper" key={index}>
-                    <div className="integration-upper-row">
-                        <div className="integration-upper-row_1">
-                            <p>{element.date}</p>
-                            <p>{element.type}</p>
-                            <p>CSR: {element.csr}</p>
-                        </div>
-                        <div className="integration-upper-row_2">
-                            <p style={{ marginRight: '55px' }}>Status</p>
-                        </div>
+            <div className="wrapper">
+                <div className="integration-upper-row">
+                    <div className="integration-upper-row_1">
+                        <p>{integration.date}</p>
+                        <p>{integration.type}</p>
+                        <p>CSR: {integration.csr}</p>
                     </div>
-
-                    <div className="integration-main-body" integration>
-                        <p>{element.description}</p>
-                        <p className="status">{element.status}</p>
-                    </div>
-
-                    <div className="integration-lower-text">
-                        <div className="integration-lower-text_1">
-                            <Link to={`${element.bugzillaCrm}`}><p>Bugzilla Ticket</p></Link>
-                            <Link to={`${element.crmUrl}`}><p>CRM Ticket</p></Link>
-                            <p>Notes</p>
-                        </div>
-
-                        <div className="integration-lower-text_buttons">
-                            <button className="edit">Edit</button>
-                            <button className="delete mx-3">Delete</button>
-                        </div>
+                    <div className="integration-upper-row_2">
+                        <p style={{ marginRight: '55px' }}>Status</p>
                     </div>
                 </div>
 
-            ))
-                : <h3>There are no integrations at this time.</h3>
-            }
+                <div className="integration-main-body" integration>
+                    <p>{integration.description}</p>
+                    <p className="status">{integration.status}</p>
+                </div>
+
+                <div className="integration-lower-text">
+                    <div className="integration-lower-text_1">
+                        <a href="{integration.bugzillaCrm}"><p>Bugzilla Ticket</p></a>
+                        <a href="{integration.crmUrl}"><p>CRM Ticket</p></a>
+                        <p>Notes</p>
+                    </div>
+
+                    <div className="integration-lower-text_buttons">
+                        <button className="edit">Edit</button>
+                        <button className="delete mx-3" onClick={deleteIntegrationHandler}>Delete</button>
+                    </div>
+                </div>
+            </div>
 
         </>
 

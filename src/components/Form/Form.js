@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './Form.css';
-import { dbIntegrations } from '../../IntegrationContext/IntegrationContext';
 
 const Form = ({ addNewIntegration }) => {
     const [date, setDate] = useState("");
@@ -65,7 +64,7 @@ const Form = ({ addNewIntegration }) => {
 
     const registerIntegration = () => {
 
-        let record = {
+        let record = [{
             date: date,
             description: description,
             bugzillaUrl: bugzillaUrl,
@@ -74,20 +73,18 @@ const Form = ({ addNewIntegration }) => {
             status: status,
             csr: csr,
             notes: notes,
-        };
+            id: Math.random() * 1000
+        }];
         addNewIntegration(record);
 
-        dbIntegrations.add(record).then(({ id }) => {
-            console.log(`The integration was successfully registered with id: ${id}`);
-        })
+        //Firebase logic to create new integration
+        // dbIntegrations.add(record).then(({ id }) => {
+        //     console.log(`The integration was successfully registered with id: ${id}`);
+        //     alert(`The integration was successfully added. The ID is: ${id}`);
+        // })
 
 
     }
-
-
-
-
-
 
 
     return (
