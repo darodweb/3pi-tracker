@@ -103,6 +103,10 @@ const Form = ({ addNewIntegration }) => {
                         value={date}
                     />
 
+                {/* <div className="text-input-group date w-label">
+                    <input type="text" className="text-input-field date simple" name="daterange" id="daterangepicker1" onChange={handleChangeDate} value={date} required />
+                        <label className="text-input-label">Date</label><span className="input-group-addon"><i className="fa fa-calendar"></i></span> </div> */}
+
                     <input
                         type="text"
                         className="form-control"
@@ -135,7 +139,7 @@ const Form = ({ addNewIntegration }) => {
 
                     <select
                         name="integrationtype"
-                        className="form-control"
+                        className="form-control py-2"
                         value={integrationType}
                         onChange={handleChangeIntegrationType}>
                         <option value="">--Select an integration--</option>
@@ -161,7 +165,7 @@ const Form = ({ addNewIntegration }) => {
 
                     <select
                         name="Status"
-                        className="form-control"
+                        className="form-control py-2"
                         value={status}
                         onChange={handleChangeStatus}>
                         <option value="">--Select current status--</option>
@@ -194,7 +198,7 @@ const Form = ({ addNewIntegration }) => {
                     <div className="button-wrapper">
                         <button
                             type="submit"
-                            className="submit-button text-center btn btn-light"
+                            className="submit-button text-center btn btn-light button--secondary"
                         >Add integration</button>
                     </div>
 

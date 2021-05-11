@@ -18,6 +18,7 @@
 .form-control {
     margin: 18px auto;
     padding: 10px;
+    color: gray;
     
 }
 
@@ -36,4 +37,8 @@
 .button-wrapper {
     width:100%;
     text-align: center;
+}
+
+.text-input-group.date, .text-input-field.date {
+    width: 100%;
 }
